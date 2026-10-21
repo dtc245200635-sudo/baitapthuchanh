@@ -8,8 +8,8 @@ LABEL description="Personal Portfolio - Mon Trien khai va Quan tri He thong Phan
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy web static assets
-COPY index.html /usr/share/nginx/html/index.html
+# Copy web static assets (HTML, CSS, JS)
+COPY index.html style.css script.js /usr/share/nginx/html/
 
 # Expose HTTP port
 EXPOSE 80
