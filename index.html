@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Bàn Đức Duy | DevOps & Software Engineer</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        :root {
+            /* Light Theme (Mặc định - Sáng sủa, chữ rõ nét tương phản cao) */
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #334155;
+            --border-color: #e2e8f0;
+            --primary: #1d4ed8;
+            --primary-hover: #1e40af;
+            --primary-light: #eff6ff;
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            --pill-bg: #f1f5f9;
+            --pill-border: #cbd5e1;
+            --pill-text: #1e293b;
+            --section-alt-bg: #f1f5f9;
+            --footer-bg: #e2e8f0;
+        }
+
+        /* Chế độ Tối (Dark mode khi bấm nút đổi) */
+        [data-theme="dark"] {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #24344d;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --primary: #38bdf8;
+            --primary-hover: #0ea5e9;
+            --primary-light: rgba(56, 189, 248, 0.15);
+            --navbar-bg: rgba(15, 23, 42, 0.92);
+            --shadow-card: 0 15px 30px rgba(0, 0, 0, 0.3);
+            --pill-bg: rgba(51, 65, 85, 0.6);
+            --pill-border: rgba(148, 163, 184, 0.2);
+            --pill-text: #f8fafc;
+            --section-alt-bg: rgba(0, 0, 0, 0.25);
+            --footer-bg: #090d16;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--navbar-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 130px 0 80px 0;
+            position: relative;
+        }
+
+        .hero-badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text-main);
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #1d4ed8 0%, #4f46e5 50%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="dark"] .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* White / Bright Cards */
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Skill Pills */
+        .skill-pill {
+            background: var(--pill-bg);
+            border: 1px solid var(--pill-border);
+            color: var(--pill-text);
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .skill-pill:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Terminal Window */
+        .terminal-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #1e293b;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .t-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .t-red { background: #ef4444; }
+        .t-yellow { background: #f59e0b; }
+        .t-green { background: #10b981; }
+
+        .terminal-body {
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        /* Section Styling */
+        .section-tag {
+            color: var(--primary);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 40px;
+        }
+
+        .bg-section-alt {
+            background-color: var(--section-alt-bg);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: var(--primary-light);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 6px 14px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            background: var(--footer-bg);
+            padding: 40px 0;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
+                <i class="bi bi-terminal-fill me-2 fs-4"></i>Duy.DevOps
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list fs-2 text-dark"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center gap-2">
+                    <li class="nav-item"><a class="nav-link" href="#about">Giới thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Kỹ năng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Dự án & Triển khai</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#system-info">Hệ thống</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
+                    
+                    <!-- Nút đổi giao diện Sáng / Tối -->
+                    <li class="nav-item ms-lg-2">
+                        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+                            <i class="bi bi-moon-stars-fill text-warning" id="themeIcon"></i>
+                            <span id="themeText">Chế độ tối</span>
+                        </button>
+                    </li>
+
+                    <li class="nav-item ms-lg-1">
+                        <a href="https://github.com/dtc245200635-sudo/baitapthuchanh" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold">
+                            <i class="bi bi-github me-1"></i> GitHub Repo
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <div class="hero-badge mb-3 shadow-sm">
+                        <span class="pulse-dot"></span> Sẵn sàng cho các dự án triển khai hệ thống
+                    </div>
+                    <h1 class="hero-title">
+                        Xin chào, Tôi là <br>
+                        <span class="gradient-text">Bàn Đức Duy</span>
+                    </h1>
+                    <p class="fs-5 mb-4 pe-lg-4" style="color: var(--text-muted); line-height: 1.7;">
+                        Kỹ sư phần mềm & Quản trị hệ thống (DevOps / System Admin). Đam mê xây dựng kiến trúc CI/CD tự động, container hóa với Docker và tối ưu hóa hiệu năng hệ thống máy chủ.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="#projects" class="btn btn-primary btn-lg rounded-pill px-4 shadow fw-bold">
+                            <i class="bi bi-rocket-takeoff-fill me-2"></i>Xem Dự Án
+                        </a>
+                        <a href="#contact" class="btn btn-outline-dark btn-lg rounded-pill px-4 fw-bold">
+                            <i class="bi bi-envelope-fill me-2"></i>Liên Hệ
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-center gap-4 small code-font fw-semibold" style="color: var(--text-muted);">
+                        <div><i class="bi bi-mortarboard-fill text-primary me-1"></i> MSV: <strong>dtc245200635</strong></div>
+                        <div><i class="bi bi-cpu-fill text-success me-1"></i> Môn: <strong>Triển khai & Quản trị HT</strong></div>
+                    </div>
+                </div>
+
+                <!-- Terminal Display -->
+                <div class="col-lg-5">
+                    <div class="terminal-box">
+                        <div class="terminal-header">
+                            <span class="t-dot t-red"></span>
+                            <span class="t-dot t-yellow"></span>
+                            <span class="t-dot t-green"></span>
+                            <span class="ms-2 small text-light code-font">system-info@duy-server:~</span>
+                        </div>
+                        <div class="terminal-body code-font">
+                            <p class="mb-1 text-info">$ docker ps --format "table {{.Names}}\t{{.Status}}"</p>
+                            <p class="mb-2 text-secondary">
+                                NAMES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS<br>
+                                portfolio-nginx-prod &nbsp; Up 42 hours (healthy)<br>
+                                database-mysql-8.0 &nbsp;&nbsp; Up 42 hours<br>
+                                prometheus-monitoring &nbsp;Up 42 hours
+                            </p>
+                            <p class="mb-1 text-info">$ curl -I https://portfolio.local</p>
+                            <p class="mb-2 text-success">
+                                HTTP/1.1 200 OK<br>
+                                Server: nginx/1.25.4-alpine<br>
+                                Content-Type: text/html; charset=UTF-8<br>
+                                X-Frame-Options: SAMEORIGIN
+                            </p>
+                            <p class="mb-0 text-warning">$ echo "System Status: 100% Operational" 🚀</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-tag">THÔNG TIN BẢN THÂN</span>
+                <h2 class="section-title">Giới Thiệu Chung</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100 text-center">
+                        <div class="fs-1 text-primary mb-3"><i class="bi bi-hdd-network-fill"></i></div>
+                        <h4 class="fw-bold mb-2">Hạ Tầng & Cloud</h4>
+                        <p class="small mb-0" style="color: var(--text-muted); line-height: 1.6;">Cấu hình máy chủ Linux (Ubuntu, CentOS), tự động hóa triển khai trên Docker, Docker Compose, VPS và Nginx Reverse Proxy.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100 text-center">
+                        <div class="fs-1 text-info mb-3"><i class="bi bi-arrow-repeat"></i></div>
+                        <h4 class="fw-bold mb-2">CI/CD Pipeline</h4>
+                        <p class="small mb-0" style="color: var(--text-muted); line-height: 1.6;">Xây dựng quy trình tự động kiểm thử, đóng gói container và triển khai liên tục qua GitHub Actions và Webhooks.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100 text-center">
+                        <div class="fs-1 text-success mb-3"><i class="bi bi-shield-check"></i></div>
+                        <h4 class="fw-bold mb-2">Bảo Mật & Giám Sát</h4>
+                        <p class="small mb-0" style="color: var(--text-muted); line-height: 1.6;">Cấu hình tường lửa UFW, chứng chỉ SSL/TLS Let's Encrypt, sao lưu dữ liệu tự động và giám sát log thời gian thực.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-section-alt">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-tag">CHUYÊN MÔN</span>
+                <h2 class="section-title">Công Nghệ & Kỹ Năng</h2>
+            </div>
+            <div class="row g-4">
+                <!-- Quản trị hệ thống -->
+                <div class="col-lg-6">
+                    <div class="glass-card p-4 h-100">
+                        <h5 class="fw-bold text-primary mb-3"><i class="bi bi-server me-2"></i>Quản Trị Hệ Thống & DevOps</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="skill-pill"><i class="bi bi-box-fill text-primary"></i> Docker</span>
+                            <span class="skill-pill"><i class="bi bi-boxes text-info"></i> Docker Compose</span>
+                            <span class="skill-pill"><i class="bi bi-cpu text-success"></i> Nginx Web Server</span>
+                            <span class="skill-pill"><i class="bi bi-terminal text-warning"></i> Linux / Ubuntu Server</span>
+                            <span class="skill-pill"><i class="bi bi-git text-danger"></i> Git & GitHub Actions</span>
+                            <span class="skill-pill"><i class="bi bi-shield-lock-fill text-dark"></i> SSL / HTTPS Let's Encrypt</span>
+                            <span class="skill-pill"><i class="bi bi-activity text-success"></i> Shell Script (Bash)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phát triển phần mềm -->
+                <div class="col-lg-6">
+                    <div class="glass-card p-4 h-100">
+                        <h5 class="fw-bold text-success mb-3"><i class="bi bi-code-slash me-2"></i>Lập Trình & Cơ Sở Dữ Liệu</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="skill-pill"><i class="bi bi-cup-hot-fill text-danger"></i> Java (Servlet, JSP, Spring)</span>
+                            <span class="skill-pill"><i class="bi bi-database-fill text-primary"></i> MySQL / MariaDB</span>
+                            <span class="skill-pill"><i class="bi bi-filetype-html text-warning"></i> HTML5 / CSS3 / JavaScript</span>
+                            <span class="skill-pill"><i class="bi bi-bootstrap-fill text-primary"></i> Bootstrap 5 & Tailwind</span>
+                            <span class="skill-pill"><i class="bi bi-diagram-3 text-info"></i> RESTful API</span>
+                            <span class="skill-pill"><i class="bi bi-gear-fill text-secondary"></i> Maven Build Tool</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects & Deployment Showcase -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-tag">BÀI THỰC HÀNH & DỰ ÁN</span>
+                <h2 class="section-title">Dự Án Triển Khai Tiêu Biểu</h2>
+            </div>
+
+            <div class="row g-4">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 fw-bold">Production</span>
+                            <i class="bi bi-box-seam fs-3 text-primary"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Quản Lý Sản Phẩm (JSP & Servlet)</h4>
+                        <p class="small flex-grow-1" style="color: var(--text-muted); line-height: 1.6;">
+                            Ứng dụng Web MVC với Java Servlet kết nối MySQL. Đóng gói WAR và triển khai trên Apache Tomcat trong môi trường Docker Container với Nginx Reverse Proxy.
+                        </p>
+                        <div class="border-top pt-3 mt-3" style="border-color: var(--border-color) !important;">
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="badge bg-light text-dark border">Docker</span>
+                                <span class="badge bg-light text-dark border">Tomcat</span>
+                                <span class="badge bg-light text-dark border">MySQL</span>
+                            </div>
+                            <span class="text-success small fw-bold"><i class="bi bi-check2-circle me-1"></i>Đã đóng gói Container</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 fw-bold">Strategy Pattern</span>
+                            <i class="bi bi-journal-check fs-3 text-success"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Ứng Dụng iNotes (Pluggable Storage)</h4>
+                        <p class="small flex-grow-1" style="color: var(--text-muted); line-height: 1.6;">
+                            Hệ thống ghi chú cá nhân hỗ trợ chuyển đổi linh hoạt tầng lưu trữ giữa MySQL Database và Flat File (TXT/CSV). Thiết kế theo chuẩn Strategy Design Pattern.
+                        </p>
+                        <div class="border-top pt-3 mt-3" style="border-color: var(--border-color) !important;">
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="badge bg-light text-dark border">Design Pattern</span>
+                                <span class="badge bg-light text-dark border">Servlet</span>
+                                <span class="badge bg-light text-dark border">Bootstrap 5</span>
+                            </div>
+                            <span class="text-success small fw-bold"><i class="bi bi-check2-circle me-1"></i>Đã tối ưu hóa lưu trữ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-card p-4 h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle px-3 py-2 fw-bold">DevOps Pipeline</span>
+                            <i class="bi bi-cloud-arrow-up fs-3 text-info"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Portfolio Website & CI/CD Pipeline</h4>
+                        <p class="small flex-grow-1" style="color: var(--text-muted); line-height: 1.6;">
+                            Website Portfolio cá nhân được container hóa với Dockerfile đa tầng, tự động hóa build & deploy lên máy chủ thông qua GitHub Actions và Nginx Web Server.
+                        </p>
+                        <div class="border-top pt-3 mt-3" style="border-color: var(--border-color) !important;">
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="badge bg-light text-dark border">CI/CD</span>
+                                <span class="badge bg-light text-dark border">GitHub Actions</span>
+                                <span class="badge bg-light text-dark border">Nginx</span>
+                            </div>
+                            <span class="text-success small fw-bold"><i class="bi bi-check2-circle me-1"></i>Tự động triển khai 100%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Info / Deployment Architecture Section -->
+    <section id="system-info" class="py-5 bg-section-alt">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-tag">KIẾN TRÚC VẬN HÀNH</span>
+                <h2 class="section-title">Mô Hình Triển Khai Hệ Thống</h2>
+            </div>
+
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="timeline-item">
+                        <h5 class="fw-bold text-primary">1. Source Control & Versioning</h5>
+                        <p class="small mb-0" style="color: var(--text-muted);">Quản lý mã nguồn trên Git Repository. Phân chia rõ ràng các nhánh <code>main</code> (Production) và <code>develop</code> (Staging).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h5 class="fw-bold text-primary">2. Continuous Integration (CI)</h5>
+                        <p class="small mb-0" style="color: var(--text-muted);">GitHub Actions tự động kích hoạt khi có commit/pull request: Kiểm tra cú pháp, chạy unit test và build image Docker.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h5 class="fw-bold text-primary">3. Continuous Deployment (CD)</h5>
+                        <p class="small mb-0" style="color: var(--text-muted);">Tự động push image lên Docker Hub / GitHub Container Registry và cập nhật lên máy chủ Production mà không gây gián đoạn (Zero Downtime).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h5 class="fw-bold text-primary">4. Reverse Proxy & Bảo mật với Nginx</h5>
+                        <p class="small mb-0" style="color: var(--text-muted);">Nginx đóng vai trò Load Balancer, nén Gzip, cache tĩnh và quản lý chứng chỉ SSL tự động gia hạn.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="glass-card p-4">
+                        <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-info-circle me-2"></i>Thông Số Triển Khai Hiện Tại</h5>
+                        <table class="table table-borderless small mb-0">
+                            <tbody>
+                                <tr class="border-bottom" style="border-color: var(--border-color) !important;">
+                                    <td class="text-muted fw-semibold">Web Server:</td>
+                                    <td class="fw-bold text-primary">Nginx 1.25 Alpine</td>
+                                </tr>
+                                <tr class="border-bottom" style="border-color: var(--border-color) !important;">
+                                    <td class="text-muted fw-semibold">Container Engine:</td>
+                                    <td class="fw-bold text-dark">Docker v26.0+ & Compose</td>
+                                </tr>
+                                <tr class="border-bottom" style="border-color: var(--border-color) !important;">
+                                    <td class="text-muted fw-semibold">Hệ điều hành Host:</td>
+                                    <td class="fw-bold text-dark">Ubuntu 22.04 LTS (x86_64)</td>
+                                </tr>
+                                <tr class="border-bottom" style="border-color: var(--border-color) !important;">
+                                    <td class="text-muted fw-semibold">Giao thức:</td>
+                                    <td class="fw-bold text-success">HTTP/2, HTTPS (TLS v1.3)</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted fw-semibold">Sinh viên thực hiện:</td>
+                                    <td class="fw-bold text-danger">Bàn Đức Duy (dtc245200635)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-tag">KẾT NỐI</span>
+                <h2 class="section-title">Thông Tin Liên Hệ</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-card p-5">
+                        <div class="row g-4 text-center">
+                            <div class="col-md-4">
+                                <div class="fs-1 text-primary mb-2"><i class="bi bi-envelope-at-fill"></i></div>
+                                <h6 class="fw-bold mb-1">Email</h6>
+                                <p class="small mb-0" style="color: var(--text-muted);">dtc245200635@ictu.edu.vn</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="fs-1 text-info mb-2"><i class="bi bi-geo-alt-fill"></i></div>
+                                <h6 class="fw-bold mb-1">Địa chỉ</h6>
+                                <p class="small mb-0" style="color: var(--text-muted);">Trường ĐH CNTT & Truyền Thông (ICTU)</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="fs-1 text-success mb-2"><i class="bi bi-github"></i></div>
+                                <h6 class="fw-bold mb-1">GitHub</h6>
+                                <p class="small mb-0" style="color: var(--text-muted);"><a href="https://github.com/dtc245200635-sudo/baitapthuchanh" target="_blank" class="text-decoration-none">dtc245200635-sudo</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-1 fw-bold text-dark">© 2026 Bàn Đức Duy - Mã sinh viên: <strong>dtc245200635</strong></p>
+            <p class="small mb-0" style="color: var(--text-muted);">Đề tài: Website Portfolio Cá Nhân - Môn Triển khai và Quản trị Hệ thống Phần mềm</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('portfolio-theme', newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('themeIcon');
+            const text = document.getElementById('themeText');
+            if (theme === 'dark') {
+                icon.className = 'bi bi-sun-fill text-warning';
+                text.innerText = 'Chế độ sáng';
+            } else {
+                icon.className = 'bi bi-moon-stars-fill text-primary';
+                text.innerText = 'Chế độ tối';
+            }
+        }
+
+        // Khởi tạo theo sở thích đã lưu hoặc mặc định sáng
+        const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeButton(savedTheme);
+    </script>
+</body>
+</html>

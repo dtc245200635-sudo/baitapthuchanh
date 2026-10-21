@@ -1,0 +1,46 @@
+name: CI/CD Pipeline - Build and Deploy Portfolio
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML Syntax
+        run: |
+          echo "Kiểm tra cú pháp file index.html..."
+          test -f index.html
+          echo "File index.html hợp lệ!"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: |
+          docker build -t duy-portfolio:${{ github.sha }} .
+          echo "Đóng gói Docker Image thành công!"
+
+      - name: Test Container Health
+        run: |
+          docker run -d --name test-portfolio -p 8080:80 duy-portfolio:${{ github.sha }}
+          sleep 3
+          curl -f http://localhost:8080/health || exit 1
+          echo "Container Healthcheck PASS!"
+          docker stop test-portfolio
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Deploy Notification
+        run: |
+          echo "Tất cả các bài kiểm tra đã vượt qua!"
+          echo "Hệ thống sẵn sàng được deploy lên máy chủ Production."

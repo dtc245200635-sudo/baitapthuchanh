@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  portfolio-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: duy-portfolio:latest
+    container_name: duy_portfolio_app
+    restart: always
+    ports:
+      - "8080:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - portfolio_net
+
+networks:
+  portfolio_net:
+    driver: bridge
